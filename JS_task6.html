@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram Login</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-size: large;
+      }
+
+      .container {
+        height: 350px;
+        width: 90%;
+        max-width: 400px;
+        padding: 10px;
+        text-align: center;
+        background-color: rgb(217, 210, 210);
+        margin: 100px auto;
+        box-shadow: 0px 3px 5px 1px black;
+      }
+
+      h1 {
+        font-style: italic;
+        font-weight: 100;
+        margin-bottom: 20px;
+      }
+
+      #uname,
+      #pass,
+      #log {
+        margin: 10px 0;
+        height: 40px;
+        width: 100%;
+        padding-left: 10px;
+        box-sizing: border-box;
+        border: 1px solid rgb(202, 164, 164);
+      }
+
+      #log {
+        background-color: #405de6;
+        font-weight: 700;
+        color: rgb(255, 255, 255);
+        height: 40px;
+        border-radius: 3px;
+        margin-bottom: 20px;
+        cursor: pointer;
+      }
+
+      #rem {
+        float: left;
+        margin-top: 18px;
+      }
+
+      label {
+        float: left;
+        margin-top: 15px;
+      }
+
+      #fpass {
+        display: block;
+        margin-top: 15px;
+        color: #4526cf;
+      }
+
+      p {
+        text-align: center;
+        margin-top: 20px;
+        position: absolute;
+        top: 470px;
+        left: 600px;
+      }
+
+      a {
+        text-decoration: none;
+        color: #145fd6;
+      }
+
+      input {
+        font-size: large;
+      }
+
+      .error-message {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Instagram</h1>
+      <form action="" onsubmit="return validateForm()">
+        <input type="text" id="uname" placeholder="Username" />
+        <br />
+        <input type="password" id="pass" placeholder="Password" />
+        <br />
+        <button id="log">Login</button>
+        <br />
+        <input type="checkbox" id="rem" />
+        <label for="rem">Remember me</label>
+        <a href="#" id="fpass">Forgot password?</a>
+      </form>
+    </div>
+    <p>Don't have an account? <a href="#">Sign up here</a></p>
+    <script>
+      function validateForm() {
+        var username = document.getElementById("uname").value;
+        var password = document.getElementById("pass").value;
+
+        if (username.trim() === "") {
+          showError("Username or password should not be empty.", "uname");
+          return false;
+        } else {
+          hideError("uname");
+        }
+
+        if (password.trim() === "") {
+          showError("Password or username should not be empty.", "pass");
+          return false;
+        } else {
+          hideError("pass");
+        }
+
+        return true;
+      }
+
+      function showError(message, inputId) {
+        var errorDiv = document.createElement("div");
+        errorDiv.className = "error-message";
+        errorDiv.appendChild(document.createTextNode(message));
+
+        var inputField = document.getElementById(inputId);
+        var container = inputField.parentNode;
+
+        var existingError = container.querySelector(".error-message");
+        if (existingError) {
+          existingError.remove();
+        }
+
+        container.insertBefore(errorDiv, inputField.nextSibling);
+      }
+
+      function hideError(inputId) {
+        var inputField = document.getElementById(inputId);
+        var container = inputField.parentNode;
+
+        var existingError = container.querySelector(".error-message");
+        if (existingError) {
+          existingError.remove();
+        }
+      }
+    </script>
+  </body>
+</html>

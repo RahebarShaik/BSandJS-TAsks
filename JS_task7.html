@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #movingImage {
+        position: relative;
+        left: 0;
+        transition: left 0.5s ease; /* Add smooth transition effect */
+      }
+      button {
+        position: relative;
+        top: 40px;
+        left: 0px;
+        height: 30px;
+        width: 100px;
+      }
+      .container {
+        padding: 20px;
+        width: 600px;
+        height: 600px;
+        margin-top: 100px;
+        margin-left: 100px;
+      }
+    </style>
+    <title>Move Image</title>
+  </head>
+  <body>
+    <div class="container">
+      <img id="movingImage" src="mo2.jpeg" alt="Moving Image" />
+
+      <button onclick="startMoving()">Start</button>
+      <button onclick="stopMoving()">Stop</button>
+    </div>
+    <script>
+      let moveInterval;
+
+      function startMoving() {
+        // Move the image to the right every 50 milliseconds
+        moveInterval = setInterval(() => {
+          const movingImage = document.getElementById("movingImage");
+          const currentPosition = parseInt(
+            getComputedStyle(movingImage).left,
+            10
+          );
+          movingImage.style.left = currentPosition + 50 + "px"; // Adjust the value as needed
+        }, 50);
+      }
+
+      function stopMoving() {
+        // Stop moving the image by clearing the interval
+        clearInterval(moveInterval);
+      }
+    </script>
+  </body>
+</html>

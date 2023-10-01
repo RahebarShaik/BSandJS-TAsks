@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+       
+        .container{
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            opacity: 200%;
+            text-align: center;
+            background: linear-gradient(rgb(245, 226, 100),rgb(213, 213, 61),rgb(240, 125, 144));
+        }
+        td{
+
+            width: 300px;
+            padding: 10px;
+        }
+        #firstName,#lastName,#email,#password,#confirmPassword,#age,#phoneNumber,#address{
+            width: 300px;
+            padding: 5px;
+
+        }
+        .col1{
+            width: 100px;
+        }
+       
+        select{
+            width: 300px;
+            padding: 5px;
+            font-weight: bold;
+        }
+        a{
+            color: aliceblue;
+        }
+        #submit{
+            width: 100px;
+            height: 30px;
+            border-radius: 10px;
+            background-color: aliceblue;
+            box-shadow: 10px 20px 40px 2px white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+
+<form id="myForm" onsubmit="return validateForm()" style="max-width: 600px; margin: 0 auto;">
+    <div class="container2">
+
+   
+    <h1>Registration Form</h1>
+    <table>
+        <tr>
+            <td class="col1"><label for="firstName">First Name:</label></td>
+            <td><input type="text" id="firstName" name="firstName"></td>
+            <td><span id="firstNameError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td class="col1"><label for="lastName">Last Name:</label></td>
+            <td><input type="text" id="lastName" name="lastName"></td>
+            <td><span id="lastNameError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td class="col1"><label for="email">Email:</label></td>
+            <td><input type="text" id="email" name="email"></td>
+            <td><span id="emailError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td class="col1"><label for="password">Password:</label></td>
+            <td><input type="password" id="password" name="password"></td>
+            <td><span id="passwordError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td class="col1"><label for="confirmPassword">Re-enter Password:</label></td>
+            <td><input type="password" id="confirmPassword" name="confirmPassword"></td>
+            <td><span id="confirmPasswordError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td class="col1"><label>Gender:</label></td>
+            <td>
+                <input type="radio" id="male" name="gender" value="male"> Male
+                <input type="radio" id="female" name="gender" value="female"> Female
+            </td>
+            <td><span id="genderError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td class="col1"><label for="age">Age:</label></td>
+            <td><input type="text" id="age" name="age"></td>
+            <td><span id="ageError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td class="col1"><label for="phoneNumber">Phone Number:</label></td>
+            <td><input type="text" id="phoneNumber" name="phoneNumber"></td>
+            <td><span id="phoneNumberError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td class="col1"><label for="address">Address:</label></td>
+            <td><input type="text" id="address" name="address"></td>
+            <td><span id="addressError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td class="col1"><label for="state">State:</label></td>
+            <td>
+                <select id="state" name="state">
+                    <option value="">Select State</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Telangana">Karnataka</option>
+                    <option value="Telangana">Tamil Nadu</option>
+
+                </select>
+            </td>
+            <td><span id="stateError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td><label>Languages:</label></td>
+            <td class="col1">
+                <input type="checkbox" id="telugu" name="languages" value="telugu"> Telugu
+                <input type="checkbox" id="english" name="languages" value="english"> English
+                <input type="checkbox" id="hindi" name="languages" value="hindi"> Hindi
+                <input type="checkbox" id="tamil" name="languages" value="tamil"> Tamil
+            </td>
+            <td><span id="languagesError" style="color: red; font-size: 14px;"></span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="checkbox" name="agree" id="agree">Hereby i agree to all terms and conditons</td>
+        </tr>
+        <tr>
+            <td colspan="2">Login to <a href="https://ethnus.com/">Ethnus</a> Website</td>
+        </tr>
+    </table>
+
+    <input type="submit" id="submit" value="Register">
+</form>
+</div>
+</div>
+<script>
+    function validateForm() {
+        // Clear previous error messages
+        clearErrors();
+
+        // Flag to check if there are any validation errors
+        let hasErrors = false;
+
+        // Validation for each input field
+        if (document.getElementById('firstName').value.trim() === '') {
+            document.getElementById('firstNameError').innerText = 'First Name cannot be empty';
+            hasErrors = true;
+        }
+
+        if (document.getElementById('lastName').value.trim() === '') {
+            document.getElementById('lastNameError').innerText = 'Last Name cannot be empty';
+            hasErrors = true;
+        }
+
+        if (document.getElementById('email').value.trim() === '') {
+            document.getElementById('emailError').innerText = 'Email cannot be empty';
+            hasErrors = true;
+        }
+
+        if (document.getElementById('password').value === '') {
+            document.getElementById('passwordError').innerText = 'Password cannot be empty';
+            hasErrors = true;
+        }
+
+        if (document.getElementById('confirmPassword').value === '') {
+            document.getElementById('confirmPasswordError').innerText = 'Re-enter Password cannot be empty';
+            hasErrors = true;
+        }
+
+        const genderElements = document.getElementsByName('gender');
+        let isGenderSelected = false;
+        for (const genderElement of genderElements) {
+            if (genderElement.checked) {
+                isGenderSelected = true;
+                break;
+            }
+        }
+        if (!isGenderSelected) {
+            document.getElementById('genderError').innerText = 'Please select a gender';
+            hasErrors = true;
+        }
+
+        if (document.getElementById('age').value.trim() === '') {
+            document.getElementById('ageError').innerText = 'Age cannot be empty';
+            hasErrors = true;
+        }
+
+        if (document.getElementById('phoneNumber').value.trim() === '') {
+            document.getElementById('phoneNumberError').innerText = 'Phone Number cannot be empty';
+            hasErrors = true;
+        }
+
+        if (document.getElementById('address').value.trim() === '') {
+            document.getElementById('addressError').innerText = 'Address cannot be empty';
+            hasErrors = true;
+        }
+
+        const stateElement = document.getElementById('state');
+        if (stateElement.value === '') {
+            document.getElementById('stateError').innerText = 'Please select a state';
+            hasErrors = true;
+        }
+
+        const languagesElements = document.getElementsByName('languages');
+        let selectedLanguages = 0;
+        for (const languageElement of languagesElements) {
+            if (languageElement.checked) {
+                selectedLanguages++;
+            }
+        }
+        if (selectedLanguages === 0) {
+            document.getElementById('languagesError').innerText = 'Please select at least one language';
+            hasErrors = true;
+        }
+
+        if (hasErrors) {
+            // If there are errors, prevent form submission
+            return false;
+        } else {
+            // If no errors, allow form submission
+            alert('Form submitted successfully!');
+            return true;
+        }
+    }
+
+    function clearErrors() {
+        // Clear all error messages
+        const errorElements = document.querySelectorAll('.error');
+        errorElements.forEach(errorElement => {
+            errorElement.innerText = '';
+        });
+    }
+</script>
+
+</body>
+</html>
