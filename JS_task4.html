@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date and Time</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      button {
+        width: 48%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin: 5px;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #dateDisplay,
+      #timeDisplay {
+        font-size: 18px;
+        margin-top: 20px;
+        color: #007bff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Date and Time</h1>
+      <button onclick="displayDate()">Show Date</button>
+      <button onclick="displayTime()">Show Time</button>
+      <div id="dateDisplay"></div>
+      <div id="timeDisplay"></div>
+    </div>
+
+    <script>
+      function displayDate() {
+        var currentDate = new Date();
+        var day = currentDate.getDate();
+        var month = currentDate.toLocaleString("default", { month: "short" });
+        var year = currentDate.getFullYear().toString().slice(-2);
+        document.getElementById("dateDisplay").innerHTML =
+          day + " " + month + " " + year;
+        document.getElementById("timeDisplay").innerHTML = "";
+      }
+
+      function displayTime() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+        var timeString =
+          hours +
+          ":" +
+          (minutes < 10 ? "0" : "") +
+          minutes +
+          ":" +
+          (seconds < 10 ? "0" : "") +
+          seconds;
+        document.getElementById("timeDisplay").innerHTML =
+          "Time: " + timeString;
+        document.getElementById("dateDisplay").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>
